@@ -1,16 +1,17 @@
 {
 	"name": "quadlayers/wp-notice-plugin-promote",
 	"description": "Composer library that allows you to create promotional notices in admin dashboard.",
-	"version": "1.0.0",
 	"keywords": [
 		"WordPress",
 		"Notice",
 		"Plugin"
 	],
-	"type": "jetpack-library",
-	"require": {
-		"php": ">=7.4.0"
+	"config": {
+		"platform": {
+			"php": "7.1.0"
+		}
 	},
+	"type": "jetpack-library",
 	"license": "GPL-3.0",
 	"authors": [
 		{

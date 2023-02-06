@@ -3,12 +3,19 @@
 namespace QuadLayers\WP_Notice_Plugin_Promote\Traits;
 
 /**
- * Trait PluginInstall
+ * Trait PluginActionLinks
  *
- * @package QuadLayers\WP_Notice_Plugin_Promote\Traits\PluginInstall
+ * @package QuadLayers\WP_Notice_Plugin_Promote\Traits\PluginActionLinks
+ * @since 1.0.0
  */
+trait PluginActionLinks {
 
-trait PluginInstall {
+	/**
+	 * Plugin slug.
+	 *
+	 * @var string
+	 */
+	protected $plungin_slug;
 
 	public function is_installed() {
 		if ( ! function_exists( 'get_plugins' ) ) {
