@@ -6,11 +6,6 @@
 		"Notice",
 		"Plugin"
 	],
-	"config": {
-		"platform": {
-			"php": "7.1.0"
-		}
-	},
 	"type": "jetpack-library",
 	"license": "GPL-3.0",
 	"authors": [
@@ -20,6 +15,11 @@
 		}
 	],
 	"minimum-stability": "stable",
+	"config": {
+		"platform": {
+			"php": "7.1.0"
+		}
+	},
 	"autoload": {
 		"psr-4": {
 			"QuadLayers\\WP_Notice_Plugin_Promote\\": "src/"
@@ -27,5 +27,8 @@
 	},
 	"extra": {
 		"textdomain": "wp-notice-plugin-promote"
+	},
+	"require": {
+		"php": ">=7.1.0"
 	}
 }
