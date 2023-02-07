@@ -10,7 +10,7 @@ namespace QuadLayers\WP_Notice_Plugin_Promote;
  */
 class PluginBySlug {
 
-	use Traits\PluginActionLink;
+	use Traits\PluginActions;
 
 	protected static $instance = array();
 
@@ -21,10 +21,9 @@ class PluginBySlug {
 	 */
 	protected $plugin_slug;
 
-	private function __construct( string $plugin_slug ) {
+	public function __construct( string $plugin_slug ) {
 
 		$this->plugin_slug = $plugin_slug;
 	}
 
 }
-* /

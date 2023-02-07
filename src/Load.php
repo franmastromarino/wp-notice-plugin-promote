@@ -32,7 +32,7 @@ class Load {
 	/**
 	 * Current Plugin.
 	 *
-	 * @var PluginBySlug
+	 * @var PluginByFile
 	 */
 	protected $current_plugin;
 
@@ -50,7 +50,7 @@ class Load {
 		/**
 		 * Get current plugin by file.
 		 */
-		$this->current_plugin = new PluginBySlug( $current_plugin_file );
+		$this->current_plugin = new PluginByFile( $current_plugin_file );
 		/**
 		 * Only show notices if current plugin file is valid.
 		 */

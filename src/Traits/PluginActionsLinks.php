@@ -3,12 +3,12 @@
 namespace QuadLayers\WP_Notice_Plugin_Promote\Traits;
 
 /**
- * Trait PluginActionLinks
+ * Trait PluginActionsLinks
  *
- * @package QuadLayers\WP_Notice_Plugin_Promote\Traits\PluginActionLinks
+ * @package QuadLayers\WP_Notice_Plugin_Promote\Traits\PluginActionsLinks
  * @since 1.0.0
  */
-trait PluginActionLinks {
+trait PluginActionsLinks {
 
 	/**
 	 * Plugin slug.

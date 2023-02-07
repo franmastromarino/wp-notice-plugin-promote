@@ -3,14 +3,14 @@
 namespace QuadLayers\WP_Notice_Plugin_Promote\Traits;
 
 /**
- * Trait PluginActionLink
+ * Trait PluginActions
  *
- * @package QuadLayers\WP_Notice_Plugin_Promote\Traits\PluginActionLink
+ * @package QuadLayers\WP_Notice_Plugin_Promote\Traits\PluginActions
  * @since 1.0.0
  */
-trait PluginActionLink {
+trait PluginActions {
 
-	use PluginActionLinks;
+	use PluginActionsLinks;
 
 	public function get_action_label() {
 
