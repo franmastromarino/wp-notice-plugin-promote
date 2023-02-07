@@ -36,13 +36,17 @@ class Load {
 	 */
 	protected $current_plugin;
 
-	public function __construct( string $current_plugin_file, array $notices = array() ) {
+	public function __construct( string $current_plugin_file, array $notices = array(), bool $developer_mode = false ) {
 		/**
 		 * Only show notices in admin panel.
 		 */
 		if ( ! is_admin() ) {
 			return;
 		}
+		$this->developer_mode = $developer_mode;
+		/**
+		 * Set developer mode.
+		 */
 		/**
 		 * Get current plugin by file.
 		 */
