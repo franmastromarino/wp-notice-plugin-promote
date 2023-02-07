@@ -14,9 +14,17 @@ class PluginBySlug {
 
 	protected static $instance = array();
 
+	/**
+	 * Plugin slug
+	 *
+	 * @var string
+	 */
+	protected $plugin_slug;
+
 	private function __construct( string $plugin_slug ) {
 
 		$this->plugin_slug = $plugin_slug;
-	}	
+	}
 
 }
+* /

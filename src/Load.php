@@ -32,7 +32,7 @@ class Load {
 	/**
 	 * Current Plugin.
 	 *
-	 * @var PluginByFile
+	 * @var PluginBySlug
 	 */
 	protected $current_plugin;
 
@@ -50,7 +50,7 @@ class Load {
 		/**
 		 * Get current plugin by file.
 		 */
-		$this->current_plugin = new PluginByFile( $current_plugin_file );
+		$this->current_plugin = new PluginBySlug( $current_plugin_file );
 		/**
 		 * Only show notices if current plugin file is valid.
 		 */
@@ -271,7 +271,7 @@ class Load {
 		if ( ! isset( $notice['plugin_slug'] ) ) {
 			return true;
 		}
-		$plugin = PluginBySlug::instance( $notice['plugin_slug'] );
+		$plugin = new PluginBySlug( $notice['plugin_slug'] );
 		/**
 		 * Return true if plugin is not activated.
 		 */
@@ -310,7 +310,7 @@ class Load {
 		 * Add action and action link to notice if plugin slug is set.
 		 */
 		if ( isset( $notice['plugin_slug'] ) ) {
-			$plugin = PluginBySlug::instance( $notice['plugin_slug'] );
+			$plugin = new PluginBySlug( $notice['plugin_slug'] );
 			$notice = array_merge(
 				$notice,
 				array(
