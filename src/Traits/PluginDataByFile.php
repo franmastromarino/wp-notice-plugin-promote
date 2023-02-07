@@ -132,6 +132,10 @@ trait PluginDataByFile {
 	}
 
 	private function get_wp_plugin_data() {
+		if ( ! function_exists( 'get_plugin_data' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+		}
 		if ( ! $this->get_file() ) {
 			return false;
 		}
