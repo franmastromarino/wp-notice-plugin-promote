@@ -123,11 +123,15 @@ class Load {
 		?>
 		<script>
 			(function($) {
-				$(document).ready(()=> {
-					$('.<?php echo esc_attr( $this->get_transient_key() ); ?>').on('click', '.notice-dismiss', function(e) {
-						e.preventDefault();
-						var notice_index = $(e.delegateTarget).data('notice_index');
-						$.ajax({
+
+				function urlSeachParams(href) {
+					var url = new URL(href);
+					var params = new URLSearchParams(url.search);
+					return params;
+				}
+
+				function ajaxCall(notice_index){
+					$.ajax({
 						type: 'POST',
 						url: ajaxurl,
 						data: {
@@ -138,7 +142,26 @@ class Load {
 							success: function(response) {
 							console.log(response);
 						},
-						});
+					});
+				}
+
+				$(document).ready(()=> {
+
+					$('.<?php echo esc_attr( $this->get_transient_key() ); ?>').on('click', '.notice-dismiss', function(e) {
+						e.preventDefault();
+						var notice_index = $(e.delegateTarget).data('notice_index');						
+						ajaxCall(notice_index)
+					});
+					$('.<?php echo esc_attr( $this->get_transient_key() ); ?>').on('click', '.button-primary', function(e) {
+						var href =  $(e.target).attr('href');
+						var hrefParams = new urlSeachParams(href);
+						var hrefAction = hrefParams.get('action');
+						if( 'activate' !== hrefAction) {
+							return;
+						}
+						var notice_index = $(e.delegateTarget).data('notice_index');
+						ajaxCall(notice_index)
+					
 					});
 				})
 			})(jQuery);

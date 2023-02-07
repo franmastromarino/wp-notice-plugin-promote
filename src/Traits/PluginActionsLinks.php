@@ -40,7 +40,7 @@ trait PluginActionsLinks {
 
 	public function get_activate_link() {
 		$plugin_path = $this->get_path();
-		return wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin_path . '&amp;paged=1', 'activate-plugin_' . $plugin_path );
+		return self_admin_url( wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin_path . '&amp;paged=1', 'activate-plugin_' . $plugin_path ) );
 	}
 
 	private function get_path() {
