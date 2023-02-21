@@ -1,4 +1,13 @@
 <?php
+/**
+ * QuadLayers WP Notice Plugin Promote
+ *
+ * @package   quadlayers/wp-notice-plugin-promote
+ * @author    QuadLayers
+ * @link      https://github.com/quadlayers/wp-notice-plugin-promote
+ * @copyright Copyright (c) 2023
+ * @license   GPL-3.0
+ */
 
 namespace QuadLayers\WP_Notice_Plugin_Promote;
 
@@ -20,5 +29,5 @@ class PluginByFile {
 	public function __construct( string $plugin_file ) {
 		$this->plugin_file = $plugin_file;
 	}
-	
+
 }

@@ -1,4 +1,13 @@
 <?php
+/**
+ * QuadLayers WP Notice Plugin Promote
+ *
+ * @package   quadlayers/wp-notice-plugin-promote
+ * @author    QuadLayers
+ * @link      https://github.com/quadlayers/wp-notice-plugin-promote
+ * @copyright Copyright (c) 2023
+ * @license   GPL-3.0
+ */
 
 namespace QuadLayers\WP_Notice_Plugin_Promote;
 
@@ -7,7 +16,6 @@ namespace QuadLayers\WP_Notice_Plugin_Promote;
  *
  * @package QuadLayers\WP_Notice_Plugin_Promote
  */
-
 class Load {
 
 	/**
@@ -36,6 +44,13 @@ class Load {
 	 */
 	protected $current_plugin;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param string  $current_plugin_file Current plugin file.
+	 * @param array   $notices Notices to display.
+	 * @param boolean $developer_mode Developer mode.
+	 */
 	public function __construct( string $current_plugin_file, array $notices = array(), bool $developer_mode = false ) {
 		/**
 		 * Only show notices in admin panel.
@@ -92,6 +107,7 @@ class Load {
 	/**
 	 * Create transient on plugin activation to delay notice one month.
 	 *
+	 * @param int $notice_delay Delay in seconds.
 	 * @return void
 	 */
 	public function delay_display_notices( int $notice_delay = MONTH_IN_SECONDS ) {
@@ -221,10 +237,10 @@ class Load {
 	/**
 	 * Create user meta key.
 	 *
-	 * @param [type] $notice_index
+	 * @param int $notice_index Notice index.
 	 * @return string
 	 */
-	private function get_user_notice_meta_hidden_key( $notice_index ) {
+	private function get_user_notice_meta_hidden_key( int $notice_index ) {
 		return 'quadlayers_' . $this->current_plugin->get_slug() . '_notice_hidden_' . $notice_index;
 	}
 
@@ -237,15 +253,33 @@ class Load {
 		return $this->get_transient_key();
 	}
 
-	private function get_current_user_notice_meta_hidden( $notice_index ) {
+	/**
+	 * Get user meta hidden notice.
+	 *
+	 * @param int $notice_index Notice index.
+	 * @return boolean
+	 */
+	private function get_current_user_notice_meta_hidden( int $notice_index ) {
 		return get_user_meta( get_current_user_id(), $this->get_user_notice_meta_hidden_key( $notice_index ), true );
 	}
 
-	private function delete_current_user_notice_meta_hidden( $notice_index ) {
+	/**
+	 * Delete user meta hidden notice.
+	 *
+	 * @param int $notice_index Notice.
+	 * @return boolean
+	 */
+	private function delete_current_user_notice_meta_hidden( int $notice_index ) {
 		return delete_user_meta( get_current_user_id(), $this->get_user_notice_meta_hidden_key( $notice_index ), false );
 	}
 
-	private function set_current_user_notice_meta_hidden( $notice_index ) {
+	/**
+	 * Set user meta hidden notice.
+	 *
+	 * @param int $notice_index Notice index.
+	 * @return boolean
+	 */
+	private function set_current_user_notice_meta_hidden( int $notice_index ) {
 		return update_user_meta( get_current_user_id(), $this->get_user_notice_meta_hidden_key( $notice_index ), true );
 	}
 
@@ -259,7 +293,7 @@ class Load {
 			$notice_index = sanitize_key( $_REQUEST['notice_index'] );
 			$this->set_current_user_notice_meta_hidden( $notice_index );
 			if ( ! isset( $this->notices[ $notice_index ] ) ) {
-				return wp_send_json_error( sprintf( esc_html__( 'Unknow notice index %s', 'wp-notice-plugin-promote' ), $notice_index ) );
+				wp_send_json_error( sprintf( esc_html__( 'Unknow notice index %s', 'wp-notice-plugin-promote' ), $notice_index ) );
 			}
 			$next_notice_delay = isset( $this->notices[ $notice_index + 1 ]['notice_delay'] ) ? $this->notices[ $notice_index + 1 ]['notice_delay'] : MONTH_IN_SECONDS;
 			$this->delay_display_notices( $next_notice_delay );
@@ -271,10 +305,10 @@ class Load {
 	/**
 	 * Check if notice is valid based on user meta.
 	 *
-	 * @param [type] $notice_index
+	 * @param int $notice_index Notice index.
 	 * @return boolean
 	 */
-	private function is_notice_hidden_for_current_user( $notice_index ) {
+	private function is_notice_hidden_for_current_user( int $notice_index ) {
 		if ( $this->developer_mode ) {
 			return false;
 		}
@@ -284,7 +318,7 @@ class Load {
 	/**
 	 * Check if notice is valid.
 	 *
-	 * @param [type] array $notice
+	 * @param array $notice Notice data.
 	 * @return boolean
 	 */
 	private function is_valid_notice( array $notice ) {
@@ -320,7 +354,8 @@ class Load {
 	/**
 	 * Get notice template.
 	 *
-	 * @param [type] $notice
+	 * @param array $notice Notice data.
+	 * @param int   $notice_index Notice index.
 	 * @return void
 	 */
 	private function include_notice_template( array $notice, int $notice_index ) {
@@ -348,6 +383,11 @@ class Load {
 		include $template_path;
 	}
 
+	/**
+	 * Remove all notices data.
+	 *
+	 * @return void
+	 */
 	public function remove_all_data() {
 		/**
 		 * Loop through notices.

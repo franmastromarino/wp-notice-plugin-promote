@@ -1,8 +1,9 @@
 {
 	"name": "quadlayers/wp-notice-plugin-promote",
-	"description": "Composer library that allows you to create promotional notices in admin dashboard.",
+	"description": "WP Notice Plugin Promote",
 	"keywords": [
 		"WordPress",
+		"Admin",
 		"Notice",
 		"Plugin"
 	],
@@ -18,6 +19,10 @@
 	"config": {
 		"platform": {
 			"php": "7.3.0"
+		},
+		"allow-plugins": {
+			"automattic/jetpack-composer-plugin": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
 	"autoload": {
@@ -25,10 +30,22 @@
 			"QuadLayers\\WP_Notice_Plugin_Promote\\": "src/"
 		}
 	},
+	"require": {
+		"php": ">=7.1.0"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^2.3.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "phpcompatibility/phpcompatibility-wp": "^2.1.0"
+	},
 	"extra": {
 		"textdomain": "wp-notice-plugin-promote"
 	},
-	"require": {
-		"php": ">=7.1.0"
+	"scripts": {
+		"test:phpunit": "./vendor/bin/phpunit phpunit",
+		"build": "composer install --no-dev && composer dump-autoload -o --no-dev",
+		"phpcs:report:csv": "./vendor/bin/phpcs --warning-severity=0 --extensions=php --report=csv --report-file=./phpcs_error.csv ./src",
+		"phpcs:report:txt": "./vendor/bin/phpcs --warning-severity=0 --extensions=php --report-file=./phpcs_error.txt ./src",
+		"phpcs:report:autofix": "./vendor/bin/phpcbf ./src"
 	}
 }

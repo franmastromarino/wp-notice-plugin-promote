@@ -1,4 +1,15 @@
+<?php
+/**
+ * QuadLayers WP Notice Plugin Promote
+ *
+ * @package   quadlayers/wp-notice-plugin-promote
+ * @author    QuadLayers
+ * @link      https://github.com/quadlayers/wp-notice-plugin-promote
+ * @copyright Copyright (c) 2023
+ * @license   GPL-3.0
+ */
 
+?>
 <div class="<?php echo esc_attr( $notices_class ); ?> notice notice-info is-dismissible" data-notice_index="<?php echo esc_attr( $notice_index ); ?>">
 	<div class="notice-container" style="padding-top: 10px; padding-bottom: 10px; display: flex; justify-content: left; align-items: center;">
 		<div class="notice-image">

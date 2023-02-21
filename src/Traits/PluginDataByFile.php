@@ -1,4 +1,13 @@
 <?php
+/**
+ * QuadLayers WP Notice Plugin Promote
+ *
+ * @package   quadlayers/wp-notice-plugin-promote
+ * @author    QuadLayers
+ * @link      https://github.com/quadlayers/wp-notice-plugin-promote
+ * @copyright Copyright (c) 2023
+ * @license   GPL-3.0
+ */
 
 namespace QuadLayers\WP_Notice_Plugin_Promote\Traits;
 
@@ -52,6 +61,11 @@ trait PluginDataByFile {
 	 */
 	private $plugin_name;
 
+	/**
+	 * Check if plugin is valid.
+	 *
+	 * @return bool
+	 */
 	public function is_valid() {
 		if ( ! $this->get_file() ) {
 			return false;
@@ -67,10 +81,20 @@ trait PluginDataByFile {
 		return true;
 	}
 
+	/**
+	 * Get plugin file path.
+	 *
+	 * @return string
+	 */
 	public function get_file() {
 		return $this->plugin_file;
 	}
 
+	/**
+	 * Get plugin slug.
+	 *
+	 * @return string
+	 */
 	public function get_slug() {
 		if ( $this->plugin_slug ) {
 			return $this->plugin_slug;
@@ -83,6 +107,11 @@ trait PluginDataByFile {
 		return $this->plugin_slug;
 	}
 
+	/**
+	 * Get plugin base folder.
+	 *
+	 * @return string
+	 */
 	public function get_base() {
 		if ( $this->plugin_base ) {
 			return $this->plugin_base;
@@ -95,6 +124,11 @@ trait PluginDataByFile {
 		return $this->plugin_base;
 	}
 
+	/**
+	 * Get plugin version.
+	 *
+	 * @return string
+	 */
 	public function get_version() {
 		if ( $this->plugin_version ) {
 			return $this->plugin_version;
@@ -107,6 +141,11 @@ trait PluginDataByFile {
 		return $this->plugin_version;
 	}
 
+	/**
+	 * Get plugin name.
+	 *
+	 * @return string
+	 */
 	public function get_name() {
 		if ( $this->plugin_name ) {
 			return $this->plugin_name;
@@ -119,6 +158,11 @@ trait PluginDataByFile {
 		return $this->plugin_name;
 	}
 
+	/**
+	 * Get plugin URL.
+	 *
+	 * @return string
+	 */
 	public function get_url() {
 		if ( $this->plugin_url ) {
 			return $this->plugin_url;
@@ -131,6 +175,11 @@ trait PluginDataByFile {
 		return $this->plugin_url;
 	}
 
+	/**
+	 * Get plugin data from WordPress.
+	 *
+	 * @return array|bool
+	 */
 	private function get_wp_plugin_data() {
 		if ( ! function_exists( 'get_plugin_data' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';

@@ -1,4 +1,13 @@
 <?php
+/**
+ * QuadLayers WP Notice Plugin Promote
+ *
+ * @package   quadlayers/wp-notice-plugin-promote
+ * @author    QuadLayers
+ * @link      https://github.com/quadlayers/wp-notice-plugin-promote
+ * @copyright Copyright (c) 2023
+ * @license   GPL-3.0
+ */
 
 namespace QuadLayers\WP_Notice_Plugin_Promote\Traits;
 
@@ -12,6 +21,11 @@ trait PluginActions {
 
 	use PluginActionsLinks;
 
+	/**
+	 * Get plugin action label.
+	 *
+	 * @return string
+	 */
 	public function get_action_label() {
 
 		if ( $this->is_activated() ) {
@@ -25,6 +39,11 @@ trait PluginActions {
 		return esc_html__( 'Install', 'wp-notice-plugin-promote' );
 	}
 
+	/**
+	 * Get plugin action link.
+	 *
+	 * @return string
+	 */
 	public function get_action_link() {
 
 		if ( $this->is_activated() ) {
