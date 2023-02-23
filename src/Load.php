@@ -328,7 +328,7 @@ class Load {
 		if ( ! isset( $notice['plugin_slug'] ) ) {
 			return true;
 		}
-		$plugin = new PluginBySlug( $notice );
+		$plugin = new PluginBySlugV2( $notice );
 		/**
 		 * Return true if plugin is not activated.
 		 */
@@ -368,7 +368,7 @@ class Load {
 		 * Add action and action link to notice if plugin slug is set.
 		 */
 		if ( isset( $notice['plugin_slug'] ) ) {
-			$plugin = new PluginBySlug( $notice );
+			$plugin = new PluginBySlugV2( $notice );
 			$notice = array_merge(
 				$notice,
 				array(
