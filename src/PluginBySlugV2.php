@@ -17,7 +17,7 @@ namespace QuadLayers\WP_Notice_Plugin_Promote;
  *
  * @since 1.0.0
  */
-class PluginBySlug {
+class PluginBySlugV2 {
 
 	use Traits\PluginActions;
 
@@ -29,20 +29,39 @@ class PluginBySlug {
 	protected static $instance = array();
 
 	/**
-	 * Plugin slug
+	 * Plugin slug.
 	 *
 	 * @var string
 	 */
 	protected $plugin_slug;
 
+
+	/**
+	 * Plugin install link.
+	 *
+	 * @var string
+	 */
+	protected $plugin_install_link;
+
+
+	/**
+	 * Plugin install label.
+	 *
+	 * @var string
+	 */
+	protected $plugin_install_label;
+
 	/**
 	 * Contructor.
 	 *
-	 * @param string $plugin_slug Plugin slug.
+	 * @param array $notice Plugin notice.
 	 */
-	public function __construct( string $plugin_slug ) {
-
-		$this->plugin_slug = $plugin_slug;
+	public function __construct( array $notice ) {
+		foreach ( $notice as $key => $value ) {
+			if ( property_exists( $this, $key ) ) {
+				$this->$key = $value;
+			}
+		}
 	}
 
 }
