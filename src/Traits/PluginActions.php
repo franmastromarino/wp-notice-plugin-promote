@@ -36,6 +36,10 @@ trait PluginActions {
 			return esc_html__( 'Activate', 'wp-notice-plugin-promote' );
 		}
 
+		if ( $this->plugin_install_label ) {
+			return $this->plugin_install_label;
+		}
+
 		return esc_html__( 'Install', 'wp-notice-plugin-promote' );
 	}
 
@@ -52,6 +56,10 @@ trait PluginActions {
 
 		if ( $this->is_installed() ) {
 			return $this->get_activate_link();
+		}
+
+		if ( $this->plugin_install_link ) {
+			return $this->plugin_install_link;
 		}
 
 		return $this->get_install_link();
