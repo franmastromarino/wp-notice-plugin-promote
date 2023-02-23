@@ -54,9 +54,16 @@ class PluginBySlug {
 	/**
 	 * Contructor.
 	 *
-	 * @param array $notice Plugin notice.
+	 * @param array|string $notice Plugin notice.
 	 */
-	public function __construct( array $notice ) {
+	public function __construct( $notice ) {
+
+		if ( is_string( $notice ) ) {
+			$notice = array(
+				'plugin_slug' => $notice,
+			);
+		}
+
 		foreach ( $notice as $key => $value ) {
 			if ( property_exists( $this, $key ) ) {
 				$this->$key = $value;
