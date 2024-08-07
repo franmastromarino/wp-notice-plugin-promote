@@ -168,6 +168,12 @@ class Load {
 						var notice_index = $(e.delegateTarget).data('notice_index');						
 						ajaxCall(notice_index)
 					});
+					$('.<?php echo esc_attr( $this->get_transient_key() ); ?>').on('click', '.link-dismiss', function(e) {
+						e.preventDefault();
+						var notice_index = $(e.delegateTarget).data('notice_index');					
+						ajaxCall(notice_index)
+						$(e.delegateTarget).remove();
+					});
 					$('.<?php echo esc_attr( $this->get_transient_key() ); ?>').on('click', '.button-primary', function(e) {
 						var href =  $(e.target).attr('href');
 						var hrefParams = new urlSeachParams(href);

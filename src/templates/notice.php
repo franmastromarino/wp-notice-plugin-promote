@@ -46,6 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php echo esc_html( $notice_more_label ); ?>
 					</a>
 				<?php endif; ?>
+				<a href="#" title="<?php echo esc_html__( 'No, close this alert...', 'wp-notice-plugin-promote' ); ?>" class="link-dismiss" style="text-decoration: none;" data-notice_index="<?php echo esc_attr( $notice_index ); ?>"><?php echo esc_html__( 'No, close this alert...', 'wp-notice-plugin-promote' ); ?></a>
 			</div>
 		</div>			
 	</div>
