@@ -384,6 +384,30 @@ class Load {
 			);
 		}
 
+		/**
+		 * Add default label.
+		 */
+		if ( isset( $notice['notice_link'] ) && empty( $notice['notice_link_label'] ) ) {
+			$notice = array_merge(
+				$notice,
+				array(
+					'notice_link_label' => esc_html__( 'Review Here', 'wp-notice-plugin-promote' ),
+				)
+			);
+		}
+
+		/**
+		 * Add default label.
+		 */
+		if ( isset( $notice['notice_more_link'] ) && empty( $notice['notice_more_label'] ) ) {
+			$notice = array_merge(
+				$notice,
+				array(
+					'notice_more_label' => esc_html__( 'Get more info', 'wp-notice-plugin-promote' ),
+				)
+			);
+		}
+
 		extract( $notice );
 
 		include $template_path;
