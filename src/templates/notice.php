@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="<?php echo esc_attr( $notices_class ); ?> notice notice-info is-dismissible" data-notice_index="<?php echo esc_attr( $notice_index ); ?>">
 	<div class="notice-container" style="padding-top: 10px; padding-bottom: 10px; display: flex; justify-content: left; align-items: center;">
 		<div class="notice-image">
-			<img style="border-radius:50%;max-width: 90px;" src="<?php echo esc_url( $notice_logo ); ?>">
+			<img style="border-radius:5px;max-width: 90px;" src="<?php echo esc_url( $notice_logo ); ?>">
 		</div>
 		<div class="notice-content" style="margin-left: 15px;">
 			<p>
