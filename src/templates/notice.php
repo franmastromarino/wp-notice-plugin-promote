@@ -22,8 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p>
 				<?php if ( ! empty( $notice_title ) ) : ?>
 					<?php echo wp_kses_post( $notice_title ); ?>
+					<br/>
 				<?php endif; ?>
-				<br/>
 				<?php if ( ! empty( $notice_description ) ) : ?>
 					<?php echo wp_kses_post( $notice_description ); ?>
 				<?php endif; ?>
