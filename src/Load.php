@@ -81,10 +81,10 @@ class Load {
 		 */
 		register_activation_hook(
 			$this->current_plugin->get_file(),
-			function() {
+			function () {
 				$notice_delay = MONTH_IN_SECONDS;
-				if ( isset( $this->notices[0]->notice_delay ) ) {
-					$notice_delay = $this->notices[0]->notice_delay;
+				if ( isset( $this->notices[0]['notice_delay'] ) ) {
+					$notice_delay = $this->notices[0]['notice_delay'];
 				}
 				$this->delay_display_notices( $notice_delay );
 			}
@@ -111,6 +111,9 @@ class Load {
 	 * @return void
 	 */
 	public function delay_display_notices( int $notice_delay = MONTH_IN_SECONDS ) {
+		if ( $notice_delay === 0 ) {
+			return;
+		}
 		set_transient( $this->get_transient_key(), true, $notice_delay );
 	}
 	/**
@@ -354,6 +357,7 @@ class Load {
 		if ( $this->developer_mode ) {
 			return false;
 		}
+
 		return get_transient( $this->get_transient_key() );
 	}
 
@@ -426,6 +430,6 @@ class Load {
 			$this->delete_current_user_notice_meta_hidden( $notice_index );
 		}
 
-		delete_transient( $this->get_transient_key() );}
-
+		delete_transient( $this->get_transient_key() );
+	}
 }
