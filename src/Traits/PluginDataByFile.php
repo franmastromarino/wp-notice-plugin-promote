@@ -27,13 +27,6 @@ trait PluginDataByFile {
 	private $plugin_file;
 
 	/**
-	 * Plugin author URL
-	 *
-	 * @var string
-	 */
-	private $plugin_url;
-
-	/**
 	 * Plugin slug
 	 *
 	 * @var string
@@ -48,20 +41,6 @@ trait PluginDataByFile {
 	private $plugin_base;
 
 	/**
-	 * Plugin version
-	 *
-	 * @var string
-	 */
-	private $plugin_version;
-
-	/**
-	 * Plugin name
-	 *
-	 * @var string
-	 */
-	private $plugin_name;
-
-	/**
 	 * Check if plugin is valid.
 	 *
 	 * @return bool
@@ -71,10 +50,6 @@ trait PluginDataByFile {
 			return false;
 		}
 		if ( ! is_file( $this->get_file() ) ) {
-			return false;
-		}
-
-		if ( ! $this->get_name() ) {
 			return false;
 		}
 
@@ -122,72 +97,5 @@ trait PluginDataByFile {
 		$plugin_base       = plugin_basename( $this->get_file() );
 		$this->plugin_base = $plugin_base;
 		return $this->plugin_base;
-	}
-
-	/**
-	 * Get plugin version.
-	 *
-	 * @return string
-	 */
-	public function get_version() {
-		if ( $this->plugin_version ) {
-			return $this->plugin_version;
-		}
-		$plugin_data = $this->get_wp_plugin_data( $this->get_file() );
-		if ( empty( $plugin_data['Version'] ) ) {
-			return false;
-		}
-		$this->plugin_version = $plugin_data['Version'];
-		return $this->plugin_version;
-	}
-
-	/**
-	 * Get plugin name.
-	 *
-	 * @return string
-	 */
-	public function get_name() {
-		if ( $this->plugin_name ) {
-			return $this->plugin_name;
-		}
-		$plugin_data = $this->get_wp_plugin_data( $this->get_file() );
-		if ( empty( $plugin_data['Name'] ) ) {
-			return false;
-		}
-		$this->plugin_name = $plugin_data['Name'];
-		return $this->plugin_name;
-	}
-
-	/**
-	 * Get plugin URL.
-	 *
-	 * @return string
-	 */
-	public function get_url() {
-		if ( $this->plugin_url ) {
-			return $this->plugin_url;
-		}
-		$plugin_data = $this->get_wp_plugin_data( $this->get_file() );
-		if ( empty( $plugin_data['PluginURI'] ) ) {
-			return false;
-		}
-		$this->plugin_url = $plugin_data['PluginURI'];
-		return $this->plugin_url;
-	}
-
-	/**
-	 * Get plugin data from WordPress.
-	 *
-	 * @return array|bool
-	 */
-	private function get_wp_plugin_data() {
-		if ( ! function_exists( 'get_plugin_data' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-		}
-		if ( ! $this->get_file() ) {
-			return false;
-		}
-		return get_plugin_data( $this->get_file() );
 	}
 }
