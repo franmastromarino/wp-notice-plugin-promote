@@ -40,7 +40,7 @@ trait PluginActions {
 			return $this->plugin_install_label;
 		}
 
-		return esc_html__( 'Install', 'wp-notice-plugin-promote' );
+		return esc_html__( 'Install free', 'wp-notice-plugin-promote' );
 	}
 
 	/**

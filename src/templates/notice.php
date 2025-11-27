@@ -19,18 +19,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<img style="border-radius:5px;max-width: 90px;" src="<?php echo esc_url( $notice_logo ); ?>">
 		</div>
 		<div class="notice-content" style="margin-left: 15px;">
-			<p>
+			<?php
+			// Check if title contains block-level HTML tags
+			$has_block_tags = ! empty( $notice_title ) && preg_match( '/<(h[1-6]|div|p|ul|ol|li|blockquote|pre|table|form|section|article|header|footer|nav|aside)\b/i', $notice_title );
+			?>
+			<?php if ( $has_block_tags ) : ?>
 				<?php if ( ! empty( $notice_title ) ) : ?>
 					<?php echo wp_kses_post( $notice_title ); ?>
-					<br/>
 				<?php endif; ?>
 				<?php if ( ! empty( $notice_description ) ) : ?>
-					<?php echo wp_kses_post( $notice_description ); ?>
+					<p>
+						<?php echo wp_kses_post( $notice_description ); ?>
+					</p>
 				<?php endif; ?>
-			</p>
+			<?php else : ?>
+				<p>
+					<?php if ( ! empty( $notice_title ) ) : ?>
+						<?php echo wp_kses_post( $notice_title ); ?>
+						<br/>
+					<?php endif; ?>
+					<?php if ( ! empty( $notice_description ) ) : ?>
+						<?php echo wp_kses_post( $notice_description ); ?>
+					<?php endif; ?>
+				</p>
+			<?php endif; ?>
 			<div style="display:flex;gap: 1em;align-items: center;" >
-				<a href="#" title="<?php echo esc_html__( 'I would not, close this alert.', 'wp-notice-plugin-promote' ); ?>" class="button-secondary link-dismiss" data-notice_index="<?php echo esc_attr( $notice_index ); ?>">
-					<?php echo esc_html__( 'I would not', 'wp-notice-plugin-promote' ); ?>
+				<a href="#" title="<?php echo esc_html__( 'Not interested, close this alert.', 'wp-notice-plugin-promote' ); ?>" class="button-secondary link-dismiss" data-notice_index="<?php echo esc_attr( $notice_index ); ?>">
+					<?php echo esc_html__( 'Not interested', 'wp-notice-plugin-promote' ); ?>
 				</a>
 				<?php
 				if ( ! empty( $notice_more_link ) && ! empty( $notice_more_label ) ) :

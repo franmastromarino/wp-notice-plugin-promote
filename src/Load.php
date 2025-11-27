@@ -407,7 +407,7 @@ class Load {
 			$notice = array_merge(
 				$notice,
 				array(
-					'notice_more_label' => esc_html__( 'Get more info', 'wp-notice-plugin-promote' ),
+					'notice_more_label' => esc_html__( 'Learn more', 'wp-notice-plugin-promote' ),
 				)
 			);
 		}
